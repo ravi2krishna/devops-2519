@@ -1,0 +1,117 @@
+5th Nov 2025
+============
+
+    -> DevOps 
+
+        -> What Is DevOps ?
+
+           -> DevOps is a set of practices, tools, and a cultural philosophy. 
+            
+            -> It breaks down the traditional silos between Development & Operations Teams
+
+        -> Why DevOps ?
+
+            -> DevOps unites software development and IT operations 
+            to "deliver software faster" and more "reliably"
+
+    -> Application 
+
+        -> Development 
+
+            -> To Build Applications We need Roles Like 
+
+                -> Software Architect 
+                -> System Engineer
+                -> Software Developers 
+                -> Software Testers 
+                -> etc 
+
+        -> Operations
+
+            -> To Build Infrastructure & Maintain Applications, We need Roles Like 
+
+                -> System Admin 
+                -> Network Admin 
+                -> Cloud Admin 
+                -> Security Admin 
+                -> etc 
+
+    -> Application Delivery / Deployment  
+
+        -> Developed -> Deploy On Servers  
+
+    -> Development (Skill set)
+
+        -> System Design    
+        -> Programming Language 
+        -> Testing Tools
+
+    -> Operations (Skill set)
+
+        -> Linux / Windows Administration (RHCA)
+        -> Networking - CCNA 
+        -> Cloud Admin 
+
+    -> DevOps Engineer 
+
+        -> DevOps Engineer will implement "DevOps Practices" using "TOOLS"
+            so that organizations can BUILD, TEST & DEPLOY (Delivery Line) Softwares
+            "FASTER" & "RELIABLE"
+
+                -> "DevOps Practices" using "TOOLS" ?
+
+                -> BUILD, TEST & DEPLOY ? 
+
+                -> "FASTER" & "RELIABLE" ?
+
+    -> "DevOps Practices" ==> "Tools"
+
+        -> Version Control Systems (VCS) ==> "Git" & "GitHub" 
+
+            -> Tracking Code Over Time 
+
+            -> Maintain different versions of code base 
+
+            -> As DevOps Engineer, you are responsible for Writing "Scripts"
+
+        -> Continuous Integration & Continuous Deployment (CI-CD) ==> "Jenkins" 
+
+            -> Application Life Cycle (SDLC)
+
+                -> Requirement -> Design -> Code -> Test -> Deploy -> Maintain 
+
+                -> The Above Process is Redundant / Repetitive 
+
+                    -> We need Automation, which can be implemented using CI-CD 
+
+        -> Containerization ("FASTER") ==> "Docker"
+
+            -> Universal Packages i.e Portability 
+
+            -> Universal Package As Application (Docker Images)
+
+        -> Orchestration ("RELIABLE") ==> "Kubernetes"
+
+            -> Helps Run Applications 24/7 without "DOWNTIME"
+
+            -> Setup Production Environments
+
+                -> Production Environments should be RELIABLE
+
+
+    -> DevOps Prerequisites 
+
+        -> Servers (*) (AWS & AZURE)
+
+        -> Linux (*) [ Command Line Interface - CLI ]
+
+        -> Application Life Cycle [ Project ]
+
+    -> DevOps Practices & Tools 
+
+
+
+
+
+
+
