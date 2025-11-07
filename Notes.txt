@@ -110,8 +110,123 @@
     -> DevOps Practices & Tools 
 
 
+7th Nov 2025
+============
+
+    -> Servers
+
+        -> A server is a "computer system" that provides data, services or resources
+            to other computers, known as "clients" over a network. 
+
+        -> Physical Server 
+
+            -> Consists of Hardware + Operating System (Linux OS : Ubuntu)
+
+        -> Server Softwares 
+
+            -> Web Server : Hosts and Serves Web Pages / Web Apps Over Internet 
+
+                -> Examples : Apache Web Server, Nginx Web Server, IIS Server etc 
+
+            -> Database Server : Hosts Application Data & Transactions 
+
+                -> Examples : MySQL Server, Postgres Server, MS SQL Server etc 
+
+            -> Email Server : Custom Email Server for Promotional Email Blasts 
+
+                -> Examples : Postfix Server, Pop3, SendMail etc 
+
+            -> DevOps Context 
+
+                -> DevOps Engineers deploys and configures web servers, email severs etc 
+                    to ensure High Availability, Performance, Security etc 
 
 
+    -> To Get Servers 
 
+        -> Purchasing servers is first step in setting up Infrastructure for
 
+            -> Hosting Web Sites / Web Apps 
 
+            -> Hosting Storage 
+
+            -> Hosting Databases 
+
+        -> Servers are Quite Costly and from learning perspective we cannot afford server 
+
+        -> Rather than Purchasing servers, we want to "RENT SERVERS"
+
+    -> Buying Server == Buying Bike 
+
+    -> Rent Server == Rent Bike (Ola, Rapido, Uber etc )
+
+    -> Rent Server ?? 
+
+        -> AWS, AZURE, GCP, OCI, Alibaba Cloud etc 
+
+        -> Above vendors offers IT Infrastructure On RENT 
+
+    -> Cloud Computing 
+
+        -> Cloud Computing refers to ON-DEMAND Availability Of Compute Power(CPU),
+            Database Storage, Networks and other IT Resources through cloud providers 
+            (AWS, AZURE, GCP, OCI, Alibaba Cloud etc) via "INTERNET" with 
+            "PAY AS YOU GO" model of pricing 
+
+        -> Cloud providers offers their services 
+
+            -> IAAS - Infrastructure As A Service (Hardware)
+            -> PAAS - Platform As A Service (Runtimes(java,python etc), databases, etc)
+            -> SAAS - Software As A Service (Direct Softwares : Monitoring Softwares, Backup Softwares etc)
+
+        -> We will implement servers on 
+            
+            -> AWS Cloud - FREE TRAIL - 6 Months (Limited Access -> Beyond Limits then Pay)
+
+            -> AZURE Cloud - FREE TRAIL - 30 Days (INR 15000)
+
+    -> AWS Account Setup - LABS
+        
+        Visit - https://aws.amazon.com/free
+
+    -> AZURE Account Setup - LABS
+        
+        Visit - https://azure.microsoft.com/en-us/free/
+
+    -> Following Details Required - Cloud Setup
+
+        Unique Email ID
+        Unique Mobile Number
+        Unique PAN CARD
+        Unique Debit / Credit Card
+
+    -> AWS Server Setup 
+
+        -> Amazon Elastic Compute Cloud(EC2) is a part of Amazon's cloud-computing platform, 
+        Amazon Web Services, that "allows users to rent virtual computers(servers)" 
+        on which to run their "own computer applications".
+
+        -> Server                   ==> AWS EC2 Instance 
+        -> Name                     ==> Identify Server With Name 
+        -> Operating System         ==> AMI - Amazon Machine Image (win, linux, max ==> Linux(Ubuntu 22.04))
+        -> Instance Types           ==> CPU & RAM Configurations (t3.micro, t3.medium, etc )
+        -> Key Pair                 ==> Authentication / Login (Key Pair : Public & Private Keys)
+        -> Network                  ==> VPC (Virtual Private Cloud)
+        -> Firewall                 ==> Security Group (Rules : Protocols, Ports, Sources) (First Firewall -> Next Authentication)
+        -> Storage (Disk)           ==> EBS Volume (Elastic Block Storage) (default is 8 GB)
+    
+
+    -> AZURE Server Setup 
+
+        -> Azure Virtual Machines(vms) is a part of Azure's cloud-computing platform, 
+        Microsoft Azure, that "allows users to rent virtual computers(servers)" 
+        on which to run their "own computer applications".
+
+        -> Server                   ==> AZURE Virtual Machine (VM)
+        -> Name                     ==> Identify Server With Name 
+        -> Operating System         ==> Images (win, linux, max ==> Linux(Ubuntu 22.04))
+        -> Size                     ==> CPU & RAM Configurations (B1s, B2s, etc )
+        -> Key Pair                 ==> Authentication / Login (Key Pair : Public & Private Keys)
+        -> Network                  ==> VNET (Virtual Network)
+        -> Firewall                 ==> Network Security Group (Rules : Protocols, Ports, Sources) (First Firewall -> Next Authentication)
+        -> Storage (Disk)           ==> Disk (Azure Disk) (default is 30 GB)
