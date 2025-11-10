@@ -230,3 +230,65 @@
         -> Network                  ==> VNET (Virtual Network)
         -> Firewall                 ==> Network Security Group (Rules : Protocols, Ports, Sources) (First Firewall -> Next Authentication)
         -> Storage (Disk)           ==> Disk (Azure Disk) (default is 30 GB)
+
+
+10th Nov 2025
+=============
+
+    -> AWS Server Setup 
+
+    -> Firewall
+
+        -> A firewall is a network security system that monitors and controls incoming and outgoing 
+            network traffic based on a set of predefined security rules(Protocols)
+
+        -> SSH Protocol 
+
+            -> Secure Shell is a network Protocol, that gives users especially system Administrators 
+                a secure way to access / login into Linux Server 
+
+            -> SSH works on Port 22 
+
+    -> Tools For Connecting With Linux Server 
+
+        -> SSH Client Software 
+
+            -> A software Program which uses SSH to connect with remote linux server 
+
+            -> Windows Laptop 
+
+                -> GitBash (recommended) it provides git & ssh client both 
+                -> Terminal 
+                -> Putty 
+                -> etc 
+
+                -> SSH Command 
+
+                    -> ssh -i identity_file username@public-ip-address
+
+                    -> ssh -i 2519.pem ubuntu@18.222.150.224 
+
+                    -> use "whoami" command to confirm, when it says "ubuntu" we are connected with server  
+
+                    -> NOTE: Above IP should be changed according to your aws account IP 
+
+            -> MacOS Laptop 
+
+                -> Terminal 
+
+                -> SSH Command 
+
+                    -> chmod 400 identity_file 
+
+                        -> NOTE: Above command will set File Permission to "READ ONLY" mode
+
+                    -> ssh -i identity_file username@public-ip-address
+
+                    -> ssh -i 2519.pem ubuntu@18.222.150.224 
+
+                    -> NOTE: Above IP should be changed according to your aws account IP 
+
+            -> Linux Laptop
+
+                -> Terminal
+
