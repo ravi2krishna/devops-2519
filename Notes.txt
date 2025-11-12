@@ -292,3 +292,108 @@
 
                 -> Terminal
 
+12th Nov 2025
+=============
+
+    -> Using AWS or AZURE or Any Other Cloud provider doesn't make any difference moving forward 
+
+    -> Using gmail.com on Edge, Chrome, Firefox, Safari etc we get same outcome 
+
+    -> We are using Linux Severs which has only CLI (Command Line Interface)
+
+    -> CLI - Command Line Interface
+
+        -> CLI is a powerful tool for interacting with Servers, through 
+            "text based commands" 
+
+        -> CLI helps Automate Repetitive Tasks 
+
+    -> Hardware & System Software(OS) Commands 
+
+        -> CPU Info 
+
+            -> cat /proc/cpuinfo
+        
+        -> RAM Info 
+
+            -> free -m 
+
+        -> Disk info 
+
+            -> df -h 
+
+        -> Network Info 
+
+            -> ip address
+        
+        -> OS Info 
+
+            -> uname 
+            -> cat /etc/os-release 
+        
+        -> Check running processes 
+
+            -> ps -ef  
+            -> htop (type q to quit)
+
+    -> Linux Architecture 
+
+        -> https://www.tutorialspoint.com/operating_system/images/linux_architecture.jpg
+
+        -> Application(Commands) -> Shell -> Kernel -> Hardware 
+
+        -> Shell : Command Line Interpreter, that translates commands entered 
+            by users and converts them into a Language that Kernel can understand 
+
+            -> BASH - Bourne Again Shell 
+
+                -> ps -ef 
+                -> echo $SHELL 
+
+        -> Kernel : The Linux kernel is the central component of the 
+            Linux operating system. 
+
+            -> uname -r 
+
+    -> Linux File System 
+
+        -> A Linux file system is a hierarchical, "tree-like" structure 
+        that organizes data and manages how it is stored on storage devices. 
+        It is unified into a "single" structure, starting from the 
+        root directory (/), which is the top of the hierarchy. 
+        
+        -> Key directories include /bin (binaries), /etc (configuration files), 
+        /home (user directories), and /var (variable data like logs). 
+
+        -> My computer                  -> root directory (/)
+        -> Program Files                -> /bin (binaries)
+        -> C: Users/ravi                -> /home (user directories)
+
+    -> Common directories
+        / (root): The top-level directory of the entire file system.
+        /bin: Contains essential command-line binaries (programs).
+        /boot: Contains files needed for the boot process, such as the kernel and bootloader.
+        /dev: Contains device files that represent hardware devices.
+        /etc: Contains system-wide configuration files.
+        /home: Contains the home directories for regular users.
+        /lib: Holds system libraries needed by binaries in /bin and /sbin.
+        /opt: For optional software packages.
+        /tmp: Temporary files, which are often deleted upon reboot.
+        /usr: Contains most user utilities and applications.
+        /var: Variable data, such as logs and temporary files that are kept between reboots. 
+
+    -> ls : lists directory content 
+
+    -> pwd : present working directory 
+
+    -> man : manual pages for commands like a helper utility to know about command 
+
+    -> mkdir : create directory 
+
+    -> touch : create empty file 
+
+    -> cat : to read file data only, not directories 
+
+    -> cd : change directory 
+
+    -> cd ~ : change to home directory
