@@ -397,3 +397,150 @@
     -> cd : change directory 
 
     -> cd ~ : change to home directory
+
+14th Nov 2025
+=============
+
+    -> vi editor(linux) == notepad (win)
+
+        -> vi / vim (visual editor) is a text editor comes pre-installed 
+            in most of the linux os 
+
+            -> touch hello.txt
+
+        -> vi modes 
+
+            -> vi existing_file_name 
+
+            -> vi hello.txt
+
+            -> "i" - insert mode 
+            -> "esc" - command mode 
+
+            -> :w - means write data to file
+            -> :wq - means write data to file and quit file 
+
+            -> vi new_file_name (creates file also)
+
+            -> q! - exit file without saving i.e discard changes in file 
+
+    -> sudo 
+
+        -> sudo - super user do 
+
+        -> super user means "root" user, who has highest privileges in server 
+
+        -> sudo command (running the command with root user i.e no permission issues)
+
+        -> sudo == Run as Administrator in win
+
+        -> whoami 
+
+        -> sudo whoami 
+
+    -> File Operations 
+
+        -> copy files & directories 
+
+            -> file 
+
+                -> cp source_file <destination_directory>
+                -> cp hello.txt aws 
+                -> sudo cp hello.txt /opt 
+
+            -> directory
+
+                -> cp -r source_dir dest_dir 
+                -> sudo cp -r aws /opt
+
+        
+        -> rename files & directories 
+
+            -> rename file & directory 
+
+                -> mv existing_file_name new_file_name
+
+                    -> mv hello.txt hi.txt
+
+                -> mv existing_dir_name new_dir_name
+
+                    -> mv aws amazon
+            
+            -> move file & directory (cut & paste in win)
+
+                -> mv existing_file_name dir_name 
+
+                    -> mv hi.txt amazon
+
+                -> mv existing_dir_name dir_name 
+
+                    -> mv new amazon
+
+            
+        -> delete files & directories (this is destructive i.e no concept of recycle bin in linux )
+
+            -> rm file_name 
+
+                -> rm hey.txt 
+
+            -> rm -r dir_name 
+
+                -> rm -r amazon 
+
+
+    -> Installations 
+
+        -> In windows download exe file & install exe 
+        -> In Ubuntu download deb file & install deb 
+
+        -> How To Download ?
+
+            -> wget <link-to-download>
+
+        -> Download zip deb file 
+
+            -> wget http://archive.ubuntu.com/ubuntu/pool/main/z/zip/zip_3.0-12build2_amd64.deb
+
+        -> Install downloaded deb file
+
+            -> zip 
+
+            -> sudo dpkg -i zip_3.0-12build2_amd64.deb
+
+            -> zip 
+
+        -> Another Approach To Install Softwares 
+
+            -> In windows we have microsoft store  
+
+                -> it's like play store i.e search and install (no explicit download)
+
+            -> In Ubuntu we have apt package manager (no explicit download needed)
+
+                -> sudo apt install <package> 
+
+                -> unzip 
+
+                -> sudo apt install unzip 
+
+                -> unzip 
+
+        -> zipping files & folders (Archive)
+
+            -> zip file.zip -r dir1 dir2 file1 file2 etc 
+
+        -> unzip (Extract)
+
+            -> unzip file.zip
+
+        -> There is an inbuilt tool called "tar" which can do Archive & Extract 
+
+            -> Archive 
+
+                -> tar -cf file.tar dir1 dir2 file1 file2 etc 
+
+            -> Extract
+
+                -> tar -xf file.tar
+
+                
