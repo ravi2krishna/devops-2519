@@ -544,3 +544,219 @@
                 -> tar -xf file.tar
 
                 
+17th Nov 2025
+=============
+
+    -> User Management 
+
+        -> User 
+
+            -> A user logins to the server and performs some task 
+
+        -> Types Of Users 
+
+            -> root user : root has all elevated privileges(can do anything) in terms of permissions 
+
+                    : no restrictions 
+
+            -> system users : users that are created when we install some softwares or 
+                              users that come with os (id is below 1000)
+
+            -> regular users : created by admins, clouds which are like human entities
+                                admins, developers etc 
+
+        -> How to know, which account you logged in  
+
+            -> whoami 
+        
+        -> Check if users exists in the server 
+
+            -> id username 
+            -> id root 
+            -> id ravi
+            -> id john
+
+        -> Check all users in server
+
+            -> cat /etc/passwd 
+
+        -> Switch user accounts 
+
+            -> sudo su - username
+
+            -> sudo su - root 
+            -> sudo su - sys # This account is currently not available.
+            -> sudo su - bin # This account is currently not available.
+
+            -> NOTE: above users sys, bin like system users don't have bash access(so no login)
+
+        -> Adding User Accounts
+
+            -> sudo adduser username
+            -> sudo adduser ravi
+            -> id ravi (user id is above 1000)
+            -> grep pattern_to_find filename 
+                -> grep commands helps in filtering 
+            -> grep ravi /etc/passwd
+            -> sudo su - ravi
+
+        -> Grant regular users login access from outside the server 
+
+            -> AWS 
+
+                -> sudo vi /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+
+                -> Set PasswordAuthentication to yes
+
+                -> Restart ssh service using 
+
+                    -> sudo systemctl restart ssh 
+
+            -> AZURE 
+
+                -> sudo vi /etc/ssh/sshd_config.d/50-cloud-init.conf
+
+                -> Set PasswordAuthentication to yes
+
+                -> Restart ssh service using 
+
+                    -> sudo systemctl restart ssh 
+
+            -> Then Login to servers using below command 
+
+                -> ssh username@ip 
+                -> ssh ravi@ip
+                -> ssh john@ip
+
+            -> Understanding Server Privileges with user accounts 
+
+                -> using ubuntu user
+                    
+                    -> ls /opt
+                    -> touch /opt/ubuntu.txt
+                    -> sudo touch /opt/ubuntu.txt
+                    -> ls /opt
+
+                -> using ravi user
+
+                    -> ls /opt
+                    -> touch /opt/ravi.txt
+                    -> sudo touch /opt/ravi.txt
+                        -> ravi is not in the sudoers file.  This incident will be reported.
+                    -> ls /opt
+
+            -> NOTE: To know sudoers, check with below command 
+
+                -> sudo grep sudo /etc/group 
+
+            -> NOTE: To add user to sudoers, check with below command 
+
+                -> sudo usermod -aG group username
+                -> sudo usermod -aG sudo ravi
+                -> sudo grep sudo /etc/group
+
+            -> NOTE: To remove user from sudoers, check with below command 
+
+                -> sudo gpasswd -d username group 
+                -> sudo gpasswd -d ravi sudo 
+
+                -> sudo grep sudo /etc/group
+
+        -> Deleting User Accounts
+
+            -> Below Command only deletes the user, but all files of user still exists
+
+                -> sudo deluser <username> 
+                -> ls /home
+                -> sudo adduser mike
+                -> ls /home
+                -> sudo deluser mike 
+                -> ls /home
+            
+            -> Below Command deletes the user and his data 
+
+                -> sudo deluser  --remove-home <username> 
+                -> ls /home
+                -> sudo adduser snow
+                -> sudo deluser --remove-home snow  
+                -> ls /home
+
+
+    -> Group Management 
+
+        -> Group 
+
+            -> A group is a logical collection of users
+
+            -> Groups are for organizing permissions in better way, rather than going 
+                with individual user accounts 
+
+            -> Checking Groups in server
+
+                -> cat /etc/group 
+
+            -> Every Group user we create has a group with same name and it's called primary group 
+
+            -> You can add your own secondary groups, using 
+
+                -> sudo addgroup groupname 
+                -> sudo grep developers /etc/group 
+                -> sudo addgroup developers 
+                -> sudo grep developers /etc/group 
+
+            -> Adding users to group 
+
+                -> sudo usermod -aG group username
+                -> sudo usermod -aG developers ravi
+                -> sudo usermod -aG developers john
+                -> sudo grep developers /etc/group 
+
+            -> Deleting users from group 
+
+                -> sudo gpasswd -d username group 
+
+            -> Delete Groups 
+
+                -> sudo groupdel groupname 
+
+                -> sudo addgroup dummy  
+                -> sudo grep dummy /etc/group 
+                -> sudo groupdel dummy 
+                -> sudo grep dummy /etc/group 
+
+    -> Permissions 
+
+        -> Permissions are grants that we apply to owners(users), groups and others.
+
+        -> Working with permissions, helps you understand, why we are getting 
+            permission denied error
+
+            -> touch /opt/hey.txt
+
+                -> touch: cannot touch '/opt/hey.txt': Permission denied
+
+            -> touch ~/hey.txt 
+
+                -> No permission issues, but why ?? 
+            
+        -> To understand permissions
+
+            -> touch hello.txt 
+            -> ls -l 
+
+                -rw-rw-r-- 1 ubuntu ubuntu 13 Nov 17 04:19 hello.txt
+
+            -> -rw-rw-r-- (indicates permissions)
+            -> ubuntu ubuntu (user group)
+
+            -> -rw-rw-r-- (first - is file)
+            
+            -> rw- rw- r-- (permissions)
+
+                rw- : user / owner 
+                rw- : group 
+                r-- : others 
+
+                r : read ==> w : write ==> x : execute 
+
+            -> rwx rwx rwx (permissions)
