@@ -760,3 +760,91 @@
                 r : read ==> w : write ==> x : execute 
 
             -> rwx rwx rwx (permissions)
+
+19th Nov 2025
+=============
+
+    -> Set file to read only permission 
+
+        -> chmod command to set permissions 
+
+        -> Symbolic Mode 
+
+            -> Use symbols for permissions 
+
+            -> rwx - read write execute 
+            -> ugo - user group others 
+            -> +- i,e add(+) and remove(-)
+
+            -> chmod u-w file_name (remove write permission for user)
+            -> chmod ug-w file_name (remove write permission for user & group)
+            -> chmod ugo-wx file_name (remove write permission for user & group)
+
+            -> chmod ugo-r file_name (no read permissions also)
+            -> chmod ugo+r file_name (grant read permissions also)
+
+        -> Absolute Mode 
+
+            -> Use numbers for permissions 
+
+            -> 4 - read
+            -> 2 - write
+            -> 1 - execute
+            -> 0 - no permission 
+            -> https://www.globo.tech/learning-center/wp-content/uploads/2018/01/chmod-Notation-1.png
+            
+            -> rw- rw- r-- [ 664 ] 
+                -> read & write for user & group
+                -> read only for others
+
+            -> Earlier we used chmod 400 key 
+
+        
+        -> Changing Ownership 
+
+            -> chown : change owner 
+
+                -> sudo chown ubuntu /opt/file.txt
+
+            -> chgrp : change group  
+
+                -> sudo chgrp ubuntu /opt/file.txt
+
+            -> Group Level Permissions 
+
+                -> sudo vi /opt/db.properties
+
+                    url=jdbc:mysql://localhost:3306/mydatabase
+                    username=myuser
+                    password=mypassword
+
+                -> sudo chgrp developers /opt/db.properties
+
+                -> sudo chmod 440 /opt/db.properties
+
+                -> sudo grep developers /etc/group 
+
+        -> Use case for execute permission
+
+            -> wget https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.1/2023-04-19/bin/linux/amd64/kubectl
+
+            -> kubectl : command line tool we use to manage resources within Kubernetes cluster
+
+            -> ./kubectl
+                    -bash: ./kubectl: Permission denied
+
+            -> chmod u+x kubectl
+
+            -> ./kubectl
+
+    -> Did we get some control on Linux Server using CLI ?
+
+        -> In Win == We can Do in Linux (CLI)
+
+    -> NOTE: All the activities we performed so far are related to "OPERATIONS" 
+
+        -> As a DevOps Engineer, now you know about Operations     
+
+    -> NOTE: In Parallel we have "DEVELOPMENT" team, who are "DEVELOPING APPLICATIONS" 
+
+        -> By Next Week, As a DevOps Engineer, you will be knowing about Development 
