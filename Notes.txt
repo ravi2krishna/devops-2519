@@ -1027,3 +1027,23 @@ The Main Branch is protected to ensure stability.
 A Developer creates a Dev Branch to work on new features or fixes.
 The developer opens a Pull Request to merge changes from the dev branch to the main branch.
 The Owner reviews the changes, and upon approval, merges them into the Main Branch.
+
+
+26th Nov 2025
+=============
+
+    -> Create GitHub Account 
+    -> Install Visual Studio Code (VS Code)
+        -> IDE - Integrated Development Environment (Writing Code / Scripts)
+    -> Install Git Bash (win) 
+    -> Install git on mac     
+
+
+    -> Setting the git Configuration
+        
+        -> git config --global user.name "ravi2krishna"
+        -> git config --global user.email "ravi2krishna@gmail.com"
+
+    -> Create a branch called dev as a developer
+    -> Clone Remote Github Repository 
+    -> Switch to dev branch and start coding 
