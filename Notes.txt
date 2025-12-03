@@ -1115,3 +1115,112 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
                 -> Browse Pubic IP 
 
                 -> Terminate Web Server We Created
+
+3rd Dec 2025
+=============
+
+    -> Task For DevOps Engineer
+
+    -> How DevOps Engineer Will Write Automation Scripts [Shell Script]
+
+    -> How To Use VCS in CLI (Server)
+
+    -> Earlier We Demonstrated, How To Use VCS in GUI (VS Code) 
+
+    -> Shell Scripting
+
+        -> Shell scripting is a way to automate tasks on a server 
+            by writing a series of commands in a file.
+            This file, called a script, is then executed.
+
+        -> A shell script is a text file containing a sequence of commands 
+            that the shell(bash) can interpret and execute. 
+            These commands can include anything from simple file operations 
+            to complex system administration tasks.
+        
+        -> Automating repetitive tasks is the most common use case. 
+
+    -> Git CLI Workflow 
+
+        git clone <url>
+        cd repository
+        git status
+        git branch
+        git config --global user.name ravi2krishna                   
+        git config --global user.email ravi2krishna@gmail.com
+        git branch	 scripts
+        git branch
+        git checkout scripts
+        git branch
+        git status
+        vi script.sh   
+            { put some content }               
+        git status
+        git add script.sh   
+            { staged the changes }
+        git commit -m "Create Deployment Script"    
+            { Committed from staging area to local repo}
+        git status
+        git push --all
+
+        -> NOTE: Generate PAT (Personal Access Token) for CLI Push Operations 
+
+        -> NOTE: Terminate Web Server We Created
+
+    -> Static Code Analysis - SCA 
+
+        -> Static code analysis is the "process" of examining source code, bytecode, or binary code 
+        without executing it to find potential bugs, security vulnerabilities, and quality issues. 
+        Automated tools scan the code against predefined rules 
+        to identify problems early in the development cycle, 
+        promoting better coding practices and security. 
+
+        -> Static code analysis is the PROCESS of analysing source code without actually executing it. 
+
+        -> It involves examining the code for potential issues, 
+            vulnerabilities, and adherence to coding standards and best practices. 
+        
+        -> Static code analysis can help identify various types of issues, including:
+
+                Syntax errors and typos
+                Unused variables and methods
+                Code duplication
+                Security vulnerabilities (e.g., SQL injection, cross-site scripting)
+                Memory leaks and resource leaks
+                Performance issues
+                Conformance to coding standards and style guidelines (e.g., indentation, naming conventions)
+
+        -> NOTE: Later on we as DevOps Engineers will write Automated CI-CD Pipelines,
+                    in which SCA is one of the checks / steps 
+
+    -> To implement SCA we use Tool "SonarQube"
+
+    -> SonarQube 
+
+        -> SonarQube is an open-source platform for continuous code quality and security analysis 
+            that helps developers identify bugs, security vulnerabilities, and code smells in their code. 
+            It integrates with CI/CD pipelines.
+
+        -> SonarQube Requires Following Hardware Configuration
+        
+            -> AWS 
+            
+                -> “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 8 GB as Storage.  
+                
+            -> AZURE 
+            
+                -> B2S, i.e 4 GB RAM - 2 CPU’s on AZURE, with 30 GB as Storage
+                
+            -> NOTE: Charges Applicable i.e 4 INR per hour
+
+            -> NOTE: SonarQube works on “port 9000”
+
+                -> Make sure to add port 9000 as part of your Security Group or Network Security Group
+
+
+        -> To Install SonarQube Will Rely on Docker Tool (Docker is for Fastness)
+
+            -> Without Docker - https://github.com/ravi2krishna/sonarqube-installation-guide.git - 45 mins 
+
+            -> With Docker - 5 mins 
+            
