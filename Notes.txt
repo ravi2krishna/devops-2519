@@ -1205,7 +1205,7 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
         
             -> AWS 
             
-                -> “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 8 GB as Storage.  
+                -> “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 20 GB as Storage.  
                 
             -> AZURE 
             
@@ -1224,3 +1224,53 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
 
             -> With Docker - 5 mins 
             
+5th Dec 2025
+=============
+
+    -> Code Analysis With SonarQube
+
+    -> Verify SonarQube Installation
+
+        -> sudo ss -ntpl
+        -> Browse SonarQube, in Browser with port 9000 -> ip_address:9000 
+
+    -> For SonarQube Setup, we need Docker 
+
+        docker
+        ls
+        wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+        ls
+        docker
+
+    -> Install SonarQube
+        sudo ss -ntpl
+        sudo docker container run -dt --name sonarqube --restart=always -p 9000:9000 sonarqube
+        sudo ss -ntpl
+    
+    -> Browse SonarQube, in Browser with port 9000 -> ip_address:9000 
+
+    -> Default credentials are 
+        Username is admin 
+        Password is admin
+
+    -> LMS Project - Code 
+        
+        https://github.com/ravi2krishna/lms-v1.git
+
+    -> Github Fork
+
+        -> Forking a repository means creating a copy of the repo. 
+            When you fork a repo, you create your own copy of the repo on your GitHub account.
+
+        -> NOTE: Fork Above Project to your Github Accounts
+
+    -> Performing Code Analysis With SonarQube 
+
+        ls
+        git clone -b dev https://github.com/joshisuyog4/lms-v1.git 
+        ls
+        cd ~/lms-v1/webapp
+        ls
+        sudo docker run  --rm -e SONAR_HOST_URL="http://3.149.4.107:9000" -v ".:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.token=sqp_d5adfd3df2690e803eb348a91f2ab4028e14cda7 -Dsonar.projectKey=lms
+
+    -> NOTE: Once Sonar Analysis Lab is done, Delete SonarQube Server 
