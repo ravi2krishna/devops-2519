@@ -1274,3 +1274,190 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
         sudo docker run  --rm -e SONAR_HOST_URL="http://3.149.4.107:9000" -v ".:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.token=sqp_d5adfd3df2690e803eb348a91f2ab4028e14cda7 -Dsonar.projectKey=lms
 
     -> NOTE: Once Sonar Analysis Lab is done, Delete SonarQube Server 
+
+
+8th Dec 2025
+=============
+
+    -> Build Management 
+
+        -> The term "build" may refer to the "process" by which 
+            "source code" is converted into "binary code" (software artifact)
+
+        -> In DevOps, the software build process is a foundational component of the 
+            Continuous Integration and Continuous Delivery (CI/CD) pipeline, 
+            serving as a critical automated step that transforms 
+            source code into a deployable product.
+
+                -> Artifact is Useable Software after build is done 
+
+        -> Source Code - https://github.com/notepad-plus-plus/notepad-plus-plus/tags
+
+                -> After Building, Artifact is Useable Software which is below 
+
+        -> Binary Code - https://notepad-plus-plus.org/downloads/
+
+    
+    -> Any Build implementation consists of following steps 
+
+        -> Source Code Files 
+
+            -> Source code is the list of human-readable instructions that a programmer writes
+
+            -> Handled by Developer
+
+        -> Metadata File 
+
+            -> File that contains information about the project and 
+                configuration details used to build the project. 
+
+            -> Handled by Developer
+
+        -> Binary Code (After Build is done)
+
+            -> Build artifacts are files produced by a build
+
+            -> Handled by Developer in his Laptop
+            
+            -> Handled by DevOps Engineer on Server for future Automation in CI-CD
+
+        
+    -> NOTE: Below Link Help's you understand, how developers initially learn how to perform builds 
+
+        -> https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app
+
+
+    -> Three Tier App Architecture
+
+        -> Most Popular Applications
+            
+            -> https://en.wikipedia.org/wiki/Programming_languages_used_in_most_popular_websites
+
+        -> LMS Application Stack
+            
+            -> Database: POSTGRES
+            -> Backend: NODEJS 
+            -> Frontend: JavaScript (REACTJS)
+
+    -> LMS Project - BUILD 
+        
+        -> As LMS App is multi tier, We need Following Rules(ports) in Security Group
+            -> SSH - 22 - Login
+            -> DATABASE TIER [ POSTGRES ] - 5432 - Storing Data
+            -> APPLICATION TIER [ NODEJS ] - 8080 - Business Logics
+            -> FRONTEND TIER [ REACTJS ] - 80 - Hosted On Web Server
+
+    -> NOTE: LMS Application Build Requires, below hardware configuration
+
+        -> AWS 
+            
+            -> “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 20 GB as Storage.  
+                
+        -> AZURE 
+            
+            -> B2S, i.e 4 GB RAM - 2 CPU’s on AZURE, with 30 GB as Storage
+
+    -> Steps To Build LMS Application (From Development Team We Get KT)
+
+        -> sudo ss -ntpl
+
+        -> Setup Database 
+
+            -> Goto https://www.postgresql.org/download/linux/ubuntu/
+
+                sudo apt install curl ca-certificates
+                sudo install -d /usr/share/postgresql-common/pgdg
+                sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+                . /etc/os-release
+                sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+                sudo apt update
+                sudo apt install postgresql-18
+        
+        -> sudo ss -ntpl
+
+        -> Every Database has connection properties, which includes
+            -> Address Of Database
+            -> Database Port
+            -> Database Username
+            -> Database Password
+
+        -> Commands to set the password for postgres database
+            -> sudo su - postgres
+            -> psql
+            -> \password
+
+    
+        -> Setup Backend / App Layer For LMS 
+
+            -> Create a new session for server using "ubuntu" server 
+
+            -> Install Nodejs on your server using below Link 
+
+                -> https://nodejs.org/en/download
+
+                -> Select Linux & version 20 LTS 
+
+                # Download and install nvm:
+                curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+                # in lieu of restarting the shell
+                \. "$HOME/.nvm/nvm.sh"
+
+                # Download and install Node.js:
+                nvm install 20
+
+                # Verify the Node.js version:
+                node -v # Should print "v20.19.6".
+
+                # Verify npm version:
+                npm -v # Should print "10.8.2".
+
+        -> NOTE: Verify Node Environment setup with below commands
+
+            -> node -v 
+            -> npm -v
+
+        -> Steps to Build Backend API 
+
+            -> ls
+            -> git clone -b dev https://github.com/joshisuyog4/lms-v1.git 
+            -> ls 
+            -> cd ~/lms-v1/api
+            -> vi .env 
+
+                MODE=dev
+                PORT=8080
+                DATABASE_URL=postgresql://postgres:db_password@localhost:5432/postgres
+
+                -> NOTE: In .env file we would specify the database connection details.
+
+                    -> grep .env -r
+            
+            -> Verify in postgres session 
+
+                -> \dt 
+
+            -> Database Schema 
+
+                -> cat prisma/migrations/20221110085013_init/migration.sql
+            
+            -> Commands to setup Database tables 
+
+                -> npm install 
+                -> npx prisma generate && npx prisma db push
+            
+            -> Verify in postgres session 
+
+                -> \dt 
+
+            -> NOTE: Command to build application using "ubuntu" user
+
+                -> ls build
+                -> npm run build 
+                -> ls build
+
+            -> NOTE: Command to start application using "ubuntu" user    
+                
+                -> node build/index.js 
+
+
