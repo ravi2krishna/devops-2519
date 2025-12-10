@@ -1461,3 +1461,191 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
                 -> node build/index.js 
 
 
+10th Dec 2025
+=============
+
+    -> Locally verify 
+        
+        -> curl http://localhost:8080/api
+
+        -> NOTE: If you get below message, backend deployment is success   
+            
+            {"message":"success","mode":"dev"}
+
+    -> Verify with Browse - http://public-ip:8080/api
+
+    -> Setup Frontend / Client Layer For LMS 
+
+        -> In Our Repo, we have webapp directory which is frontend part of the application
+
+        -> cd ~/lms-v1/webapp/
+
+        -> vi .env 
+
+            VITE_API_URL=http://public-ip:8080/api
+
+        -> To build frontend
+
+            -> npm install
+            -> ls dist
+            -> npm run build 
+            -> ls dist
+
+        -> To Host Frontend, we need web server 
+
+            -> sudo ss -ntpl
+            -> sudo apt -y install nginx
+            -> sudo ss -ntpl
+            -> ls /var/www/html/
+            -> sudo rm -rf /var/www/html/*
+            -> ls /var/www/html/
+            -> sudo cp -r ~/lms-v1/webapp/dist/*  /var/www/html/
+            -> ls /var/www/html/
+        
+        -> For Troubleshooting 
+
+            -> sudo ss -ntpl
+            -> sudo systemctl stop postgresql
+            -> sudo ss -ntpl
+            -> sudo systemctl start postgresql
+            -> sudo ss -ntpl
+
+            -> control + c 
+            -> sudo ss -ntpl
+            -> node index.js
+            -> sudo ss -ntpl
+
+            -> sudo ss -ntpl
+            -> sudo systemctl stop nginx
+            -> sudo ss -ntpl
+            -> sudo systemctl start nginx
+            -> sudo ss -ntpl
+
+
+    -> LMS Application Deployment - 2 Hours 
+
+    -> Terminate Server 
+    
+    -> Again Redeploy LMS Application - 2 Hours 
+
+    -> DevOps Engineer will implement "DevOps Practices" using "TOOLS"
+            so that organizations can BUILD, TEST & DEPLOY (Delivery Line) Softwares
+            "FASTER" & "RELIABLE"
+
+    -> FASTER ?? 
+
+    -> Project - 1 (LMS App Deployment) Helped us understand, 
+        how real world apps will be deployed
+
+    -> Project - 2 (How To Accelerate Things i.e FASTER )
+
+        -> LMS Application Deployment - 2 Hours (Normal Approach)
+
+        -> LMS Application Deployment - 2 mins (Containerized Approach)
+
+    -> Containerization
+
+        -> Containerization is one of the practices in devops, which provides 
+
+            -> "Lightweight" and "Efficient" way of running applications 
+
+            -> Promotes "Faster Deployments" and "Portability" for applications
+
+    -> Containerization is implemented by software/tool "DOCKER" 
+
+    -> Docker, the containerization platform which helps 
+        simplify application deployment which in turn leads to faster deployments
+
+    -> Container 
+
+        -> A Container holds some supplies / objects, that can be transported 
+
+        -> In terms of software development, a container is an object for 
+            holding or transporting/ship applications.
+
+    
+    -> Monolithic Architecture
+
+        -> Monolithic architecture is a software design pattern where 
+            the entire application is built as a single, indivisible unit.
+
+    -> Microservices Architecture    
+
+        -> Microservices Architecture is a software development approach that involves 
+            building small, independent services that work together to create a larger application.
+
+    
+    -> Containerization involves packaging an application and its dependencies together 
+        into a "lightweight" & "portable" container. 
+
+    -> We as DevOps Engineer, should be able to deploy micro sized applications 
+        into micro sized Environments i.e Containers 
+
+            -> Earlier we deployed Applications on Virtual Machines (Heavy Weight Environments)
+
+    -> Docker Architecture
+
+        -> Docker Daemon / Docker Service 
+        -> Docker Client [ Docker CLI ]
+        -> Docker Registry [ https://hub.docker.com ]
+        -> Docker Images
+        -> Docker Containers
+
+    -> Flow
+
+        -> Devops Engineer -> Request -> Docker Client(Run Container Nginx) 
+            -> Docker Daemon -> Docker Registry -> Nginx Image (Fetched On Server) -> Nginx Container 
+
+    -> The Daemon/Service is responsible for managing Docker objects such as 
+        images, containers, and networks. All the heavy lifting is done by daemon.
+
+    -> The client sends commands to the daemon and receives output. 
+
+    -> The registry stores Docker images and allows them to be shared among users and systems.
+
+    -> A Docker image is a lightweight, standalone, and executable package 
+        that includes everything needed to run the desired software application.
+
+    -> A container in Docker allows you to run an application with all the dependencies it needs
+
+    -> NOTE: Terminate LMS Server, once work is done 
+
+    -> Setup Docker 
+
+    -> NOTE: Docker Requires, below hardware configuration
+
+        -> AWS 
+            
+            -> “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 20 GB as Storage.  
+                
+        -> AZURE 
+            
+            -> B2S, i.e 4 GB RAM - 2 CPU’s on AZURE, with 30 GB as Storage   
+
+        -> Add Following Rules in Security Groups / Network Security Groups
+            -> 22, 80, 32768-61000, 8080-9090
+
+                -> 32768-61000 - Docker Pre defined port range   
+                -> 8080-9090 - User defined port range
+
+        -> Setup Docker 
+
+            -> docker 
+            -> wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            -> docker
+
+            -> docker info 
+            -> sudo docker info
+
+            -> docker image ls 
+
+            -> To Overcome Permissions issues, add ubuntu user to docker group 
+
+                -> sudo usermod -aG docker ubuntu
+                -> logout & login back 
+                -> docker image ls 
+
+            -> docker container run hello-world
+
+            -> Devops Engineer -> Request -> Docker Client(Run Container hello-world) 
+                -> Docker Daemon -> Docker Registry -> hello-world Image (Fetched On Server) -> hello-world Container 
