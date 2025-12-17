@@ -1958,3 +1958,206 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
     -> ls 
 
     -> docker container run -dt --name web-app -p 8080:80 ravi2krishna/login-2519
+
+
+17th Dec 2025
+=============
+
+    -> Dockerize Three Tier Architecture Application
+
+        -> REACTJS + Nodejs + Postgres
+
+    -> sudo ss -ntpl
+
+        -> No Ports 80, 8080, 5432 
+
+    -> Setup Database On Container 
+
+        -> docker container run -dt --name app-db -e POSTGRES_PASSWORD=Login@123 postgres
+        -> docker container ls -a
+
+    -> Setup Nodejs On Container 
+
+        -> docker container run -dt --name app-be-1 node:20 
+        -> docker container ls -a
+        -> docker container exec app-be-1 node -v
+        -> docker container exec app-be-1 npm -v
+    
+    -> Steps to Build Backend API 
+
+            -> ls
+            -> git clone -b dev https://github.com/joshisuyog4/lms-v1.git 
+            -> ls 
+            -> cd ~/lms-v1/api
+            -> docker container inspect app-db
+            -> vi .env 
+
+                MODE=dev
+                PORT=8080
+                DATABASE_URL=postgresql://postgres:Login@123@172.17.0.2:5432/postgres
+            
+            -> docker container exec app-be-1 pwd
+            -> docker container exec app-be-1 ls
+
+            -> cat Dockerfile
+
+                # Base Image
+                FROM node:20
+
+                # RUN - runs commands
+                RUN mkdir /backend
+
+                # WORKDIR - set working directory
+                WORKDIR /backend
+
+            -> docker build -t ravi2krishna/lms-be .
+
+            -> docker container run -dt --name app-be-2 ravi2krishna/lms-be
+            -> docker container exec app-be-2 pwd
+            -> docker container exec app-be-2 ls / 
+            -> docker container exec app-be-2 ls 
+
+            -> cat Dockerfile
+
+                # Base Image
+                FROM node:20
+
+                # RUN - runs commands
+                RUN mkdir /backend
+
+                # WORKDIR - set working directory
+                WORKDIR /backend
+
+                # COPY - copy code
+                COPY . /backend
+
+                # RUN - Build Related Commands
+                RUN npm install
+                RUN npx prisma generate
+                RUN npx prisma db push
+                RUN npm run build
+
+            -> docker build -t ravi2krishna/lms-be .
+
+            -> docker container run -dt --name app-be-3 ravi2krishna/lms-be
+            -> docker container exec app-be-3 pwd
+            -> docker container exec app-be-3 ls 
+            -> docker container exec app-be-3 ls build
+
+            -> cat Dockerfile
+
+                # Base Image
+                FROM node:20
+
+                # RUN - runs commands
+                RUN mkdir /backend
+
+                # WORKDIR - set working directory
+                WORKDIR /backend
+
+                # COPY - copy code
+                COPY . /backend
+
+                # RUN - Build Related Commands
+                RUN npm install
+                RUN npx prisma generate
+                RUN npx prisma db push
+                RUN npm run build
+
+                # Start Application
+                # RUN node build/index.js
+                CMD ["node","build/index.js"]
+
+            -> docker build -t ravi2krishna/lms-be .
+            -> docker container run -dt --name app-be-4 ravi2krishna/lms-be
+            -> docker container inspect app-be-4 
+            -> curl container-ip:8080/api 
+
+            -> Verify with Browse - http://public-ip:8080/api
+
+            -> docker container run -dt --name app-be -p 8080:8080 ravi2krishna/lms-be
+
+            -> Verify with Browse - http://public-ip:8080/api
+
+    
+    -> Setup Frontend / Client Layer For LMS 
+
+        -> cat Dockerfile
+
+            # Base Image
+            FROM node:20
+
+            # RUN - runs commands
+            RUN mkdir /frontend
+
+            # WORKDIR - set working directory
+            WORKDIR /frontend
+
+            # COPY - copy code
+            COPY . /frontend
+
+            # RUN - Build Related Commands
+            RUN npm install
+            RUN npm run build
+
+        -> docker build -t ravi2krishna/lms-fe .
+        -> docker container run -dt --name fe-1 ravi2krishna/lms-fe
+        -> docker container exec fe-1 pwd
+        -> docker container exec fe-1 ls 
+        -> docker container exec fe-1 ls dist 
+
+        -> cat Dockerfile
+
+             Base Image
+            FROM node:20 AS build
+
+            # RUN - runs commands
+            RUN mkdir /frontend
+
+            # WORKDIR - set working directory
+            WORKDIR /frontend
+
+            # COPY - copy code
+            COPY . /frontend
+
+            # RUN - Build Related Commands
+            RUN npm install
+            RUN npm run build
+
+            # Start App By deploying On Nginx
+            FROM nginx
+            COPY --from=build  /frontend/dist /usr/share/nginx/html
+
+        -> docker build -t ravi2krishna/lms-fe .
+        -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe
+
+
+    -> To Run Application
+
+        -> docker container run -dt --name app-db -e POSTGRES_PASSWORD=Login@123 postgres
+        -> docker container run -dt --name app-be -p 8080:8080 ravi2krishna/lms-be
+        -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe
+
+    -> DevOps Engineer will implement "DevOps Practices" using "TOOLS"
+            so that organizations can BUILD, TEST & DEPLOY (Delivery Line) Softwares
+            "FASTER" & "RELIABLE"
+
+            -> Using Docker we made things "FASTER" 
+
+            -> Once we Terminated Docker Server, we need to setup Environment from scratch again 
+
+        -> NOTE: Next we want someone to take care of environment, run apps 24/7, without Downtime  
+
+    -> High Availability
+
+        -> High Availability (HA) means designing IT systems to operate continuously 
+            with minimal or zero downtime, ensuring they remain accessible and reliable 
+            despite hardware/software failures by eliminating single points of failure 
+            through redundancy, failover, and replication, often 
+            targeting standards like "five nines" (99.999% uptime)
+
+        -> To Achieve High Availability / Reliability we need process called "Orchestration"
+
+        -> To implement Orchestration, we use "Kubernetes" 
+
+        
