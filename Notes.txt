@@ -2161,3 +2161,112 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
         -> To implement Orchestration, we use "Kubernetes" 
 
         
+19th Dec 2025
+=============
+
+    -> Kubernetes
+
+        -> Production-Grade Container Orchestration
+
+            -> Production-grade container orchestration refers to the capability of 
+                "running containerized applications in a production environment" effectively and reliably.
+
+        -> Kubernetes builds upon "15 years of experience of running production workloads at Google"
+
+        -> It was originally designed by Google, and is now maintained by the 
+            Cloud Native Computing Foundation (CNCF) 
+
+    -> Setup Kubernetes
+
+        -> Minikube - Mini Kubernetes (Free & Minimal Cost)
+
+            -> Minikube is a single node cluster, where the master processes and worker processes and 
+                workstation all run on one node (one server).
+
+            -> Minikube is primarily used for local development and "learning purposes". 
+
+            -> Minikube is great for learning, but it is not designed for running production workloads.
+
+            -> For production environments, you would typically use "managed Kubernetes services" provided by 
+                "cloud providers" i.e AWS EKS or AZURE AKS or GOOGLE GKE etc
+
+    -> NOTE: Minikube Requires, below hardware configuration
+
+        -> AWS 
+            
+            -> “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 20 GB as Storage.  
+                
+        -> AZURE 
+            
+            -> B2S, i.e 4 GB RAM - 2 CPU’s on AZURE, with 30 GB as Storage   
+
+        -> Add Following Rules in Security Groups / Network Security Groups
+            -> 22, 80, 31000-32767
+
+    -> In Minikube We need to do setup Manually, but in Production vendors provide the Setup 
+
+    -> Setup Docker 
+
+            -> docker 
+            -> wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            -> docker
+            -> sudo usermod -aG docker ubuntu
+
+    -> Setup Minikube
+
+            -> minikube
+            -> curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+            -> sudo install minikube-linux-amd64 /usr/local/bin/minikube
+            -> minikube
+            -> minikube status
+            -> minikube start
+            -> minikube status
+
+    -> Setup kubectl
+
+            -> kubectl
+            -> curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            -> chmod u+x kubectl 
+            -> sudo mv kubectl /usr/local/bin/kubectl
+            -> kubectl
+
+    -> NOTE: Once the cluster is setup, we are gonna be using "kubectl" to do any sort of work on the cluster 
+        like getting status, creating applications etc 
+
+            -> kubectl get pods
+            -> kubectl get replicasets
+            -> kubectl get deployments
+
+    -> Kubernetes Objects 
+
+        -> By creating an object, you’re telling the Kubernetes system what applications to run in the cluster
+
+        -> Few examples of kubernetes objects include pods, replicasets, deployments etc. 
+
+        -> To work with Kubernetes objects, whether to "create", "modify" or "delete" them, 
+            you’ll need to use a command-line tool called KUBECTL. 
+
+    -> Object Spec & Object Status
+
+        -> Object Spec
+
+            -> The object spec, which you(devops engineer) must provide, 
+            describes your desired state for the object(application), 
+            the characteristics that you want the object to have. 
+
+        -> Object Status
+
+            -> The object status describes the actual state of the object, 
+                and is supplied and updated by the Kubernetes system.
+
+    -> Manage Objects 
+
+        -> Managing Objects inside kubernetes can be done using
+            -> Commands - Imperative Commands
+            -> CODE(YAML) - Declarative Configuration files or Manifests (recommended)
+    
+    -> https://kubernetes.io/docs/concepts/overview/working-with-objects/
+
+    -> Pod (Object)
+
+        -> A Pod represents a unit of deployment: A single instance of an application in Kubernetes. 
