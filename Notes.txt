@@ -2270,3 +2270,89 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
     -> Pod (Object)
 
         -> A Pod represents a unit of deployment: A single instance of an application in Kubernetes. 
+
+
+22nd Dec 2025
+=============
+
+    -> Imperative Commands 
+
+        -> Similar To Docker Commands 
+
+            -> kubectl get pods 
+
+            -> kubectl run nginx-pod --image nginx --port=80
+
+            -> kubectl get pods 
+
+            -> kubectl describe pod nginx-pod
+
+            -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html
+
+            -> kubectl delete pod nginx-pod
+
+            -> kubectl get pods 
+    
+    -> CODE(YAML) 
+
+        -> YAML is a human-readable data serialization language. 
+        It is commonly used for "configuration files" (k8s) and in applications 
+        where data is being stored or transmitted.
+
+        -> YAML focuses on USER FRIENDLINESS & EASY READABILITY
+
+        -> YAML is used to store information about different k8s objects 
+            pods, replicasets, deployments etc 
+
+        -> YAML Uses 
+
+            -> Simple Key Values 
+
+            -> Dictionaries : Set Of Key Values
+
+            -> Lists : Multiple Items 
+
+    -> Pod Using YAML 
+
+        -> Create pod definition(pod.yaml) in YAML 
+
+        -> kubectl get pods 
+
+        -> kubectl apply -f pod.yaml 
+
+        -> kubectl get pods 
+
+        -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html
+
+        -> kubectl delete pod nginx-pod
+
+        -> Warning: It is recommended that users create Pods only through a Controller, 
+            and not directly.
+
+        -> PODS are ephemeral in nature
+
+        -> Pods are not designed to run forever
+
+        -> Pods do not "heal" or repair themselves
+
+    -> Replicaset Object 
+
+        -> Replica Set is often used to guarantee the "availability" of pods 
+
+        -> Replica Set manages pod lifecycle
+
+        -> Replicaset helps you achieve High Availability 
+
+        -> Warning: In many cases it is recommended to create a Deployment instead of ReplicaSet.
+
+        -> NOTE: Replicasets don’t allow updates. 
+
+    -> Deployment Object 
+
+        -> A deployment provides "updates" for pods and replica sets.
+
+        -> NOTE: No Warning for Deployment, this is the reason in real world 
+                We never create pods & replicasets directly.
+                We use deployments in real world to manage pods & replicasets.
+
+            
