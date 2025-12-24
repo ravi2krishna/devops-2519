@@ -2356,3 +2356,108 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
                 We use deployments in real world to manage pods & replicasets.
 
             
+24th Dec 2025
+=============
+
+    -> Service Object
+
+        -> A service is an object that acts as an endpoint, which you use to access the pods.
+
+    -> There are different types of kubernetes services present, 
+        to expose an application running on pods
+            -> NodePort         -> access over internet
+            -> Cluster IP       -> access within intranet (private communication)
+            -> LoadBalancer     -> access over internet provided by cloud
+
+    
+    -> NodePort Service
+
+        -> You can contact the NodePort Service, from outside (www) the cluster, 
+            by requesting <NodeIP>:<NodePort>
+
+            -> This is similar to docker using -P (32768 - 61000)
+
+            -> In k8s we use (30000 - 32767)
+    
+    -> Labels & Selectors
+
+        -> Labels: Labels are key/value pairs that are attached to objects.  
+
+        -> Selectors: Using a label selector, we can identify a set of objects.
+
+        -> https://kubernetes.io/docs/tutorials/kubernetes-basics/public/images/module_04_labels.svg
+
+        -> NOTE: Whatever the label we have in the pod definition, 
+                    the same should be in "matchLabels" section
+
+        -> kubectl port-forward --address 0.0.0.0 service/nginx-service 30000:80
+
+        -> kubectl get services 
+
+    -> HELM Charts 
+
+        -> Helm helps you manage Kubernetes applications
+
+        -> Think of it like apt/yum/homebrew for Kubernetes.
+
+    -> Helm uses a packaging format called "Charts"
+
+        -> Structure Of helm charts 
+
+            -> Chart.yaml: This file contains metadata about the Chart, 
+                including the name, version, description, and maintainer information.
+
+            -> Templates: Helm Charts include a templates directory, 
+                which contains Kubernetes YAML templates with placeholders 
+                for values defined in "values.yaml" 
+                Helm replaces these placeholders with the 
+                actual values when rendering the templates.
+
+            -> Values.yaml: This file holds customizable configuration values for the Chart.  
+
+    -> Helm CLI
+        
+        -> The Helm command-line tool allows you to interact with Helm Charts. 
+        You can use commands like helm install, helm uninstall, helm upgrade, 
+        and helm delete to manage Helm releases.
+
+    -> Install Helm 
+
+        -> helm
+        -> curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+        -> chmod u+x get_helm.sh
+        -> ./get_helm.sh
+        -> helm 
+
+    -> helm list -a
+    -> helm create <chart-name>
+    -> helm create web-app 
+    -> helm install <chart-name> <chart-location> -f values-nginx.yml
+    -> helm uninstall chart-name 
+
+    
+    -> Persistent Volumes - PV 
+
+        -> A PersistentVolume (PV) is a piece of "storage" in the cluster
+
+        -> PersistentVolume represents storage independent of pods 
+
+            -> How volumes are independent of containers 
+
+    -> PersistentVolumeClaim (PVC)
+
+        -> A PersistentVolumeClaim is a request for storage by a pod
+    
+    -> Storage Class
+
+        -> A StorageClass in Kubernetes defines the type of stoarge to use 
+
+    -> NOTE: 
+        
+        -> Pod -> Volume Claim -> Persitent Volume -> Physical Storage(/mnt/data) 
+
+    -> https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
+
+    -> kubectl get nodes
+
+    -> minikube ssh
