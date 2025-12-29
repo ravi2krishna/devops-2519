@@ -2461,3 +2461,68 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
     -> kubectl get nodes
 
     -> minikube ssh
+
+
+29th Dec 2025
+=============
+
+    -> AWS EKS Production Cluster
+
+        -> Create Cluster Master 
+
+        -> Create Worker Nodes X 2
+
+        -> Created Workstation 
+
+    -> Inside Workstation Setup
+
+        -> Setup docker
+
+            wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            docker
+            sudo usermod -aG docker ubuntu
+
+        -> Setup Kubectl
+
+            kubectl 
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
+            chmod +x kubectl
+            sudo mv kubectl /usr/local/bin/kubectl
+            kubectl
+            kubectl get pods
+
+        -> Setup AWS CLI 
+
+            aws 
+            sudo apt -y update && sudo apt -y install awscli
+            aws 
+            aws eks list-clusters
+            aws configure
+            aws eks list-clusters
+            kubectl get services
+            cat /home/ubuntu/.kube/config
+            aws eks update-kubeconfig --name <cluster> --region <region-code>
+            aws eks update-kubeconfig --name lms --region us-east-2
+            cat /home/ubuntu/.kube/config
+            kubectl get services
+            kubectl get pods
+            kubectl get deployments
+
+
+    -> DevOps Engineer will implement "DevOps Practices" using "TOOLS"
+            so that organizations can BUILD, TEST & DEPLOY (Delivery Line) Softwares
+            "FASTER" & "RELIABLE"
+
+            -> Using kubernetes we made things "RELIABLE" 
+
+        -> NOTE: Next we want someone to take care of Automation 
+
+    -> Any Application (v1 - v2 - v3 -vN)
+
+        -> New Requirement -> Code -> Build -> Test -> Depoy 
+
+    -> NOTE: Next we want someone to take care of Automation i.e CI / CD 
+
+    -> CI / CD : Continuous Integratation (Development) & Continuous Deployment(Operations)
+
+        -> CI / CD We are implementing with "JENKINS" -> CI CD Pipelines 
