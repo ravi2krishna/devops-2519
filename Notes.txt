@@ -2515,6 +2515,10 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
 
             -> Using kubernetes we made things "RELIABLE" 
 
+
+31st Dec 2025
+=============
+
         -> NOTE: Next we want someone to take care of Automation 
 
     -> Any Application (v1 - v2 - v3 -vN)
@@ -2526,3 +2530,74 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
     -> CI / CD : Continuous Integratation (Development) & Continuous Deployment(Operations)
 
         -> CI / CD We are implementing with "JENKINS" -> CI CD Pipelines 
+
+    -> Final Project 
+
+        -> Developer Writes Code 
+
+        -> Code Should be automatically analysed 
+
+        -> Code Should be automatically built 
+
+        -> Code Should be automatically deployed 
+
+    -> Jenkins Setup Requires 8 GB RAM & 2 CPUS - 20 GB Storage 
+
+        -> AWS: t2.large 
+        -> AZURE: D2s_v3 
+        -> Jenkins Works on port 8080 
+        -> Based on tools you are integrating, update relevant ports in security groups 
+
+            sudo ss -ntpl
+            
+            sudo apt update -y
+            sudo apt install openjdk-21* -y
+            sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+            https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+            echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+            https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+            /etc/apt/sources.list.d/jenkins.list > /dev/null
+            sudo apt-get update -y && sudo apt-get install jenkins -y
+
+            sudo ss -ntpl
+
+    -> Jenkins Jobs 
+
+        -> You can think of Jenkins Jobs as a particular "task" or "step" in your project
+
+        -> A Job can be as simple as 
+            performing code analysis or
+            building your source code or 
+            publish an artifact or 
+            deploy an application or
+            sending an email etc
+
+    -> Jenkins Plugins 
+
+        -> Plugins are the primary means of enhancing the functionality of Jenkins
+
+        -> Plugins Registry: https://plugins.jenkins.io/
+
+    -> Jenkins & Email Integratation for Job Success / Failure Feedbacks 
+
+        -> Jenkins & Gmail Integratation
+
+            -> You should enable two factor Authentication From Gmail Account 
+            
+            -> https://myaccount.google.com/apppassword
+
+    -> Jenkins home page > Manage Jenkins > Configure System > Email Notification > 
+
+        Enter the SMTP server name under ‘Email Notification’. 
+        Click the ‘Advanced’ button and then click the checkbox 
+        next to the ‘Use SMTP Authentication’ option. Now, set the following fields.
+        SMTP server name : smtp.gmail.com
+        User name: user_email_id@gmail.com
+        Password: 123456 [ not gmail password ] { app password }
+        Enable Two Factor AuthenticationOn From Gmail Account 
+        https://myaccount.google.com/apppassword
+        Use SSL : Checked
+        SMTP Port: 465
+
+
+
