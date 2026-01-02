@@ -2600,4 +2600,26 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
         SMTP Port: 465
 
 
+2nd Jan 2026
+=============
 
+    -> Earlier we had Time Based Job Triggers i.e using a specific time interval 
+        we can execute jobs 
+
+    -> Web Hooks 
+
+        -> Jenkins is an Open-Source Continuous Integration (CI) tool that is extensively 
+        used by developers to automate the testing and deployment of their applications.
+        
+        -> A Webhook is a mechanism to automatically trigger the build 
+            of a Jenkins project in response to a commit pushed to a Git repository.
+
+    -> Jenkins Permissions Issues 
+
+        sudo visudo
+        jenkins ALL= NOPASSWD: ALL
+        # opens in nano editor (control+o enter control+x)
+        sudo systemctl restart jenkins
+
+
+    
