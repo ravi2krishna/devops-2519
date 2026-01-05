@@ -2539,7 +2539,7 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
 
         -> Code Should be automatically built 
 
-        -> Code Should be automatically deployed 
+        -> Code Should be automatically deployed (vm -> container -> k8s)
 
     -> Jenkins Setup Requires 8 GB RAM & 2 CPUS - 20 GB Storage 
 
@@ -2621,5 +2621,67 @@ The Owner reviews the changes, and upon approval, merges them into the Main Bran
         # opens in nano editor (control+o enter control+x)
         sudo systemctl restart jenkins
 
+
+5th Jan 2026
+=============
+
+    -> Jenkins Pipelines 
+
+        -> A continuous integration and continuous deployment (CI/CD) pipeline 
+            is a "series of steps" that must be performed in order to deliver 
+            a new version of software.
+
+        -> "series of steps"
+
+            -> fetch latest version code 
+            -> build latest version code 
+            -> update latest version of artifacts 
+            -> deploy latest version of artifacts to servers 
+
+        -> https://www.jenkins.io/doc/book/pipeline/
+
+        -> The definition of a Jenkins Pipeline is written into a text file (called a Jenkinsfile)
+            similar to Dockerfile in Docker
+
+        -> Jenkinsfile (Declarative Pipeline)
+
+            pipeline {
+                agent any 
+                stages {
+                    stage('Build') { 
+                        steps {
+                            // 
+                        }
+                    }
+                    stage('Test') { 
+                        steps {
+                            // 
+                        }
+                    }
+                    stage('Deploy') { 
+                        steps {
+                            // 
+                        }
+                    }
+                }
+            }
+
+
+    -> Project You Should implement
+
+        -> Create VM - dev-environment
+
+            -> Installation Procedure Change To Below
+
+                curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+                sudo apt install -y nodejs
+
+        -> Create VM - qa-environment
+
+            -> Proceed With Docker 
+
+        -> Create EKS - prod-environment
+
+            -> Proceed With Kubernetes (EKS with LoadBalancer)
 
     
